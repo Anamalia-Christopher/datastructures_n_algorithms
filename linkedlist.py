@@ -122,7 +122,7 @@ if __name__ == "__main__":
     print( d.get_prev(), d,d.get_next())
 
 
-    del v2[c] # for unlinking the variable from the linkedlist 
+    del v2[0] # for unlinking the variable from the linkedlist 
     del c # for deleting the variable from memmory 
 
     
