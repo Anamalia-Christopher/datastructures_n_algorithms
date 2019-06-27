@@ -36,25 +36,43 @@ class SinglyLinkedlist_v2:
     def linking(self, value, next_node):
         return SinglyLinkedlist(value, next_node)
 
-    def __delattr__(self, name):
-        return super().__delattr__(name)
-
+    
 class DoublyLinkedlist:
 
     def __init__(self, value, _prev=None, _next=None):
         self.value = value
         self.prev = _prev
         self.next = _next
+    
+    def head_node(self):
+        while self.get_prev():
+            node = self.get_prev()
+        return node
+        
+
+    def tail_node(self):
+        node = self
+        while node.get_next():
+            node = self.get_next()
+        return node
+
+    
+    def set_next_node(self, value):
+        return self.__init__(value=value, _prev=self, _next= self.next)
 
     def next_node(self, node):
         self.next = node
 
+
     def prev_node(self, node):
         self.prev = node
+
 
     def linked_nodes(self, prev, next):
         self.prev_node(prev)
         self.next_node(next)
+
+    
 
     def get_next(self):
         return self.next
@@ -67,9 +85,6 @@ class DoublyLinkedlist:
 
     def __repr__(self):
         return str(self.value)
-
-     
-
     
 class DoublyLinkedlist_v2:
     
@@ -92,7 +107,11 @@ class DoublyLinkedlist_v2:
         return DoublyLinkedlist(value, _prev, _next)
 
     def unlinking(self, node):
-        i = self.listing.index(node)
+        try:
+            i = self.listing.index(node)
+        except ValueError:
+            raise ValueError("node is not linked to this list")
+        
 
         self.listing[i-1].next_node(self.listing[i+1])
         self.listing[i+1].prev_node(self.listing[i-1])
@@ -106,27 +125,33 @@ class DoublyLinkedlist_v2:
        
         self.unlinking(node)
 
+class CircularLinkedlist(DoublyLinkedlist):
+
+    def circularise(self):
+        
+
+    def __init__(self, *args, **kwargs):
+        return super().__init__(*args, **kwargs)
 
         
 
 
 
-
 if __name__ == "__main__":
 
-    v2 = DoublyLinkedlist_v2(2,1,3,5,3,5,6)
-    a,b,c,d,e,f,g = v2()
+    # v2 = DoublyLinkedlist_v2(2,1,3,5,3,5,6)
+    # a,b,c,d,e,f,g = v2()
 
-    print( a.get_prev(), a, a.get_next())
-    print( g.get_prev(), g,g.get_next())
-    print( d.get_prev(), d,d.get_next())
+    # print( a.get_prev(), a, a.get_next())
+    # print( g.get_prev(), g,g.get_next())
+    # print( d.get_prev(), d,d.get_next())
 
 
-    del v2[0] # for unlinking the variable from the linkedlist 
-    del c # for deleting the variable from memmory 
+    # del v2[0] # for unlinking the variable from the linkedlist 
+    # del c # for deleting the variable from memmory 
 
     
-    print(d.get_prev(), d,d.get_next())
+    # print(d.get_prev(), d,d.get_next())
 
 
 
